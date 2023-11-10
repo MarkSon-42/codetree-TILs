@@ -1,36 +1,33 @@
-n, m = map(int, input().split())
+def count_happy_sequences(n, m, grid):
+    def count_consecutive(sequence):
+        count = 1
+        max_count = 1
+        for i in range(1, len(sequence)):
+            if sequence[i] == sequence[i - 1]:
+                count += 1
+                max_count = max(max_count, count)
+            else:
+                count = 1
+        return max_count
 
+    happy_sequences = 0
+
+    # Check rows
+    for row in grid:
+        if count_consecutive(row) >= m:
+            happy_sequences += 1
+
+    # Check columns
+    for j in range(n):
+        column = [grid[i][j] for i in range(n)]
+        if count_consecutive(column) >= m:
+            happy_sequences += 1
+
+    print(happy_sequences)
+
+# Read input
+n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
-def col_happy(gird, n, m):
-    happy_col = 0
-    cnt = 0
-    for j in range(n + 1):
-        for i in range(n + 1):
-            if grid[i][j] == gird[i + 1][j]:
-                cnt += 1
-        if cnt >= m:
-            happy_col += 1
-            cnt = 0
-
-    return happy_col
-
-
-def row_happy(gird, n, m):
-    happy_row = 0
-    cnt = 0
-    for i in range(n + 1):
-        for j in range(n + 1):
-            if grid[i][j] == gird[i][j + 1]:
-                cnt += 1
-        if cnt >= m:
-            happy_row += 1
-            cnt = 0
-
-    return happy_row
-
-
-result_row = row_happy(grid, n, m)
-result_col = col_happy(grid, n, m)
-
-print(result_row + result_col)
+# Count and print happy sequences
+count_happy_sequences(n, m, grid)
