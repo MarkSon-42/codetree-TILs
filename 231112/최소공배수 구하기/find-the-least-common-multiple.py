@@ -1,10 +1,9 @@
 def lcm(x, y):
-    
-    def gcd(x, y):
-    while y:
-        x, y = y, x % y
-    return x
 
+    def gcd(x, y):
+        while y:
+            x, y = y, x % y
+        return x
     result = (x * y) // gcd(x, y)
     print(result)
 
