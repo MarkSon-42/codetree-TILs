@@ -4,4 +4,4 @@ def print_func(n):
     print()
 
 
-print_func(4)
+print_func(int(input()))
