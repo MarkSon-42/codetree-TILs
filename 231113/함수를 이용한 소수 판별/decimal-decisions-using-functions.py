@@ -8,6 +8,9 @@ a, b = map(int, input().split())
 
 _sum = 0
 for i in range(a, b + 1):
+
+    if i == 1:
+        continue
     if is_prime(i):
         _sum += i
 
