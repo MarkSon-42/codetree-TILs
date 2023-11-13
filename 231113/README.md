@@ -8,10 +8,15 @@
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-1|180xp|3일째🔥|
+6|180xp|3일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
+|[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[개념]함수를 이용한 369 게임](https://www.codetree.ai/missions/5/problems/369-games-using-functions)|![보통][medium]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%ED%95%A8%EC%88%98%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20369%20%EA%B2%8C%EC%9E%84/369-games-using-functions.py)|
+|[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[개념]함수를 이용한 소수 판별](https://www.codetree.ai/missions/5/problems/decimal-decisions-using-functions)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%ED%95%A8%EC%88%98%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20%EC%86%8C%EC%88%98%20%ED%8C%90%EB%B3%84/decimal-decisions-using-functions.py)|
+|[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[개념]함수를 이용한 윤년 판별](https://www.codetree.ai/missions/5/problems/tell-the-function-using-a-leap-year)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%ED%95%A8%EC%88%98%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20%EC%9C%A4%EB%85%84%20%ED%8C%90%EB%B3%84/tell-the-function-using-a-leap-year.py)|
+|[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[연습]두 수의 거듭제곱](https://www.codetree.ai/missions/5/problems/two-numbers-of-squares)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%EB%91%90%20%EC%88%98%EC%9D%98%20%EA%B1%B0%EB%93%AD%EC%A0%9C%EA%B3%B1/two-numbers-of-squares.py)|
+|[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[연습]사칙연산 함수](https://www.codetree.ai/missions/5/problems/quadratic-operations-function)|![보통][medium]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%EC%82%AC%EC%B9%99%EC%97%B0%EC%82%B0%20%ED%95%A8%EC%88%98/quadratic-operations-function.py)|
 |[Novice Mid / 함수 / 값을 반환하는 함수](https://www.codetree.ai/missions?missionId=5)|[[연습]함수를 이용한 온전수 판별](https://www.codetree.ai/missions/5/problems/determining-the-whole-number-using-a-function)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/MarkSon-42/codetree-TILs/blob/main/231113/%ED%95%A8%EC%88%98%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20%EC%98%A8%EC%A0%84%EC%88%98%20%ED%8C%90%EB%B3%84/determining-the-whole-number-using-a-function.py)|
 
 
