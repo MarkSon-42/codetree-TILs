@@ -3,20 +3,36 @@
 // i가 0이거나 a[i] ≠ a[i - 1]인 경우에 개수를 증가시킨다.
 
 // i = 0인 경우에는 직전 원소를 정의할 수 없으므로, 따로 예외적으로 처리를 해줘야 함!
+
 #include <iostream>
+#include <algorithm>
+
+#define MAX_N 1000
+
+using namespace std;
+
+int n;
+int arr[MAX_N];
 
 int main() {
-    int cnt = 0;
-    for(int i = 0; i < n; i++) 
-        if(i == 0 || a[i] != a[i - 1])
+    // input
+    cin >> n;
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    // 연속하여 동일한 숫자가 나오는 횟수를 구해보며 - CASE 1
+    // 그 중 최댓값을 갱신 - CASE 2
+    int answer = 0, cnt = 0;
+    for(int i = 0; i < n; i++) {
+        // CASE 1
+        if(i >= 1 && arr[i] == arr[i - 1])
             cnt++;
+        else
+            cnt = 1;
+        
+        answer = max(answer, cnt);
+    }
 
-        // 이건 안됨
-        // if(a[i] != a[i - 1] || i == 0)
-        //    cnt++;
-    
-    cout << cnt;
+    cout << answer;
+    return 0;
 }
-
-// if문의 경우 앞에 있는 조건을 먼저 확인합니다.
-// or 연산자의 경우에는 둘 중에 하나라도 참이면 되기 때문에, 앞에 i == 0 조건이 참인 경우에는 뒤의 조건을 전혀 확인하지 않고 바로 참 이라고 판단을 하고 넘어가게 됩니다.
