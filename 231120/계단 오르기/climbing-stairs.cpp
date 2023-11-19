@@ -1,7 +1,7 @@
 #include <iostream>
 #include <climits>
 
-#define MAX_N 1000000
+#define MAX_N 100000
 
 using namespace std;
 
