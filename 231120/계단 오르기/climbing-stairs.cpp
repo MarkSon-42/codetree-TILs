@@ -6,9 +6,9 @@
 using namespace std;
 
 // 변수 선언
-int n;
+long long n;
 
-int dp[MAX_N + 1];
+long long dp[MAX_N + 1];
 
 int main() {
     // 입력:
