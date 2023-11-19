@@ -23,7 +23,7 @@ int main() {
     // 점화식에 따라 dp값 채우기
     // dp[i] = dp[i - 2] + dp[i - 3]
     for(int i = 4; i <= n; i++)
-        dp[i] = (dp[i - 2] + dp[i - 3]) % 10007
+        dp[i] = (dp[i - 2] + dp[i - 3]) % 10007;
 
     cout << dp[n];
     return 0;
