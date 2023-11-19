@@ -1,44 +1,35 @@
+// 1번째 집으로 모이면 총 이동 거리의 합은 1∗0+2∗1+3∗2+2∗3+6∗4=38이 됩니다.
+// 2번째 집으로 모이면 총 이동 거리의 합은 1∗1+2∗0+3∗1+2∗2+6∗3=26이 됩니다.
+// 3번째 집으로 모이면 총 이동 거리의 합은 1∗2+2∗1+3∗0+2∗1+6∗2=18이 됩니다.
+// 4번째 집으로 모이면 총 이동 거리의 합은 1∗3+2∗2+3∗1+2∗0+6∗1=16이 됩니다.
+// 5번째 집으로 모이면 총 이동 거리의 합은 1∗4+2∗3+3∗2+2∗1+6∗0=18이 됩니다.
+
 #include <iostream>
-#include <cstdlib>
-#include <algorithm>
+#include <vector>
 #include <climits>
+#include <cstdlib>
 
 using namespace std;
 
-int n = 5;
-int arr[5] = {1, 5, 2, 6, 8};
+int n;
+int arr[100];
 
 int main() {
-    int max_sum = 0;
+    cin >> n;
     for (int i = 0; i < n; i++) {
-        arr[i] *= 2;
+        cin >> arr[i];
+    }
 
-        int sum_diff = 0;
-        for (int j = 0; j < n - 1; j++) {
-            sum_diff += abs(arr[j + 1] - arr[j]);
+    int answer = INT_MAX;
+
+    for (int i = 0; i < n; i++) {
+        int sum_dist = 0;
+        for (int j = 0; j < n; j++) {
+            sum_dist += abs(j - i) * arr[j];
         }
+        answer = min(answer, sum_dist);
+    }
 
-        max_sum = max(max_sum, sum_diff);
-        arr[i] /= 2;
-    }
-    cout << max_sum;
-
-    int neg_arr[5] = {-6, -5, -2, -10, 15};
-    
-    int max_val = INT_MIN;
-    for (int i = 0; i < n; i++) {
-        if (neg_arr[i] > max_val)
-            max_val = arr[i];
-    }
-    
-    int min_val = INT_MAX;
-    for (int i = 0; i < n; i++) {
-        if (neg_arr[i] < min_val)
-            min_val = neg_arr[i];
-    }
-    
-    cout << max_val << " " << min_val;
-    
-    
+    cout << answer;
     return 0;
 }
