@@ -16,8 +16,9 @@ int main() {
     dp[2] = 1;
     dp[3] = 1;
     dp[4] = 1;
+    dp[5] = 2;
 
-    for(int i = 5; i <= n; i++)
+    for(int i = 6; i <= n; i++)
             dp[i] = dp[i - 2] + dp[i - 4];
 
     cout << dp[n] % 10007;
