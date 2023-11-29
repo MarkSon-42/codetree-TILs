@@ -1,15 +1,18 @@
-p = [0] * 46
+def fibonacci(n):
+    if n <= 1:
+        return n
 
-p[1] = 1
-p[2] = 1
+    fib = [0] * (n + 1)
+    fib[1] = 1
 
-n = int(input())
+    for i in range(2, n + 1):
+        fib[i] = fib[i - 1] + fib[i - 2]
 
-for i in range(3, n):
-    if n >= 3:
-        p[n] = p[n-2] + p[n-1] 
-    else:
-        print(p[n])
-        break
+    return fib[n]
 
-print(p[n])
+# Read input
+N = int(input())
+
+# Output the Nth Fibonacci number
+result = fibonacci(N)
+print(result)
