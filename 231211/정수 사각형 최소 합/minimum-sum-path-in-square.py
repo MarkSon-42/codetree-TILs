@@ -1,21 +1,24 @@
-# 마지막으로 방문한 위치
-
-# 이동한 경로 상의 숫자 합
-
-# 마지막으로 방문한 위치가 같다면, 이동한 경로 상의 숫자 합은 클수록 더 좋다.
-
-# dp[i][j]에 대한 정의 " 마지막으로 방문한 위치 (i, j)라 했을 떄, 얻을 수 있는 최대 합"
-
-# dp[i][j] = max(dp[i-1][j] + a[i][j], max(dp[i-1][dp]))
-
 n = int(input())
+num = [list(map(int, input().split())) for _ in range(n)]
+dp = [[0] * n for _ in range(n)]
 
-arr = [list(map(int, input().split())) for _ in range(n)]
 
-dp = [[0] * n for _ in range(n + 1)]
+def initialize():
+    # 시작점의 경우 dp[0][n - 1] = num[0][n - 1]으로 초기값을 설정해줍니다
+    dp[0][n - 1] = num[0][n - 1]
 
-for i in range(n):
-    for j in range(n):
-        dp[i][j] = max(dp[i - 1][j] + arr[i][j], dp[i][j + 1] + arr[i][j])
+    # 최우측 열의 초기값을 설정해줍니다.
+    for i in range(1, n):
+        dp[i][n - 1] = dp[i - 1][n - 1] + num[i][n - 1]
+
+    # 최상단 행의 초기값을 설정해줍니다.
+    for j in range(n - 2, -1, -1):
+        dp[0][j] = dp[0][j + 1] + num[0][j]
+
+initialize()
+
+for i in range(1, n):
+    for j in range(n - 2, -1, -1):
+        dp[i][j] = min(dp[i - 1][j], dp[i][j + 1]) + num[i][j]
 
 print(dp[n - 1][0])
