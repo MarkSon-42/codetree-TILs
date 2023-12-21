@@ -7,6 +7,8 @@ desending = sorted(arr, reverse = True)
 for num in asending:
     print(num, end = ' ')
 
+print()
+
 
 for num in desending:
     print(num, end = ' ')
