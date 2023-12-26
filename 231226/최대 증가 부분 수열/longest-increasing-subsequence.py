@@ -2,9 +2,10 @@ import sys
 
 INT_MIN = -sys.maxsize
 
-n = 5
+n = int(input())
 dp = [0] * n
-a = [2, 3, 0, 1, 4]
+arr = list(map(int, input().split()))
+
 
 def init():
     for i in range(n):
@@ -19,7 +20,7 @@ for i in range(1, n):
         if dp[j] == INT_MIN:
             continue
 
-        if j + a[j] >= i:
+        if j + arr[j] >= i:
             dp[i] = max(dp[i], dp[j] + 1)
 
 answer = 0
