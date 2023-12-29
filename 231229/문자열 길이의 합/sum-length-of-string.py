@@ -4,7 +4,7 @@ n = int(input())
 for _ in range(n):
     string = input()
     total += len(string)
-    cnt = string.count('a')
-    cnt_a += cnt
+    if string[0] == 'a':
+        cnt_a += 1
 
 print(total, cnt_a)
