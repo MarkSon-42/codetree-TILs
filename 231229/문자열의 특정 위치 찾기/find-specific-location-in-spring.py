@@ -1,2 +1,5 @@
 string, find_str = input().split()
-print(string.index(find_str))
+if find_str in string:    
+    print(string.index(find_str))
+else:
+    print('No')
