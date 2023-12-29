@@ -11,6 +11,10 @@ for i in range(len(string) - 1):
             break
         continue
     else:
+        if i == len(string) - 1:
+            answer.append(string[i])
+            answer.append('1')
+            break
         answer.append(string[i])
         answer.append(str(cnt))
         cnt = 1
