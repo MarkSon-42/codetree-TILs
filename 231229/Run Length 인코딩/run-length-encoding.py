@@ -3,6 +3,9 @@ answer = []
 string = input()
 
 for i in range(len(string) - 1):
+    if i == len(string) - 1 and string[i + 1] != string[i]:
+        answer.append(string[i + 1])
+        answer.append('1')
     if string[i] == string[i + 1]:
         cnt += 1
         if i == len(string) - 2:
@@ -11,13 +14,13 @@ for i in range(len(string) - 1):
             break
         continue
     else:
-        if i == len(string) - 1:
-            answer.append(string[i + 1])
-            answer.append('1')
-            break
+        # if i == len(string) - 1:
+        #     answer.append(string[i])
+        #     answer.append("1")
+        #     break
         answer.append(string[i])
         answer.append(str(cnt))
         cnt = 1
 
 print(len(answer))
-print(''.join(answer))
+print("".join(answer))
