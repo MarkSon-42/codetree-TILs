@@ -6,10 +6,16 @@ for _ in range(10):
 last_char = input()
 
 answer = []
+flag = 0
 
 # print(string_list, last_char)
 for c in string_list:
     if c[-1] == last_char:
+        flag = 1
         answer.append(c)
-for x in answer:
-    print(x)
+
+if flag == 1:
+    for x in answer:
+        print(x)
+else:
+    print('None')
