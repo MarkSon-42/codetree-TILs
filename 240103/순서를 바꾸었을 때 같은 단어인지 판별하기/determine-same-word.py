@@ -1,10 +1,4 @@
-a = list(input().split())
-b = list(input().split())
+a = input()
+b = input()
 
-a = a.sort()
-b = b.sort()
-
-if a == b:
-    print("Yes")
-else:
-    print("No")
+print('Yes' if sorted(a) == sorted(b) else 'No')
