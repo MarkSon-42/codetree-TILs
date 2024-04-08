@@ -79,12 +79,12 @@ def santa_knockback(knockbacked_santa, dir, by_rudolf):
         nc = c + (rdc[dir] * C)
     # 산타가 움직여서 넉백됐을 때
     elif by_rudolf == 1:
-        nr = r + (sdr[dir] * (D-1))
-        nc = c + (sdc[dir] * (D-1))
+        nr = r + (rdr[dir] * (D-1))
+        nc = c + (rdc[dir] * (D-1))
     # 다른 산타에 의해서 넉백됐을 때
     elif by_rudolf == 2:
-        nr = r + sdr[dir]
-        nc = c + sdc[dir]
+        nr = r + rdr[dir]
+        nc = c + rdc[dir]
 
     # 게임판 밖으로 밀려나게 되면 죽는다.
     if nr < 1 or nr > N or nc < 1 or nc > N:
@@ -122,9 +122,9 @@ def santa_move(rudolf, santa):
     rudolf_c = rudolf[1]
     
     # 루돌프와 가장 가까운 방향으로 이동한다. 상우하좌 우선순으로 이동
-    for i in range(4):
-        nr = r + sdr[i]
-        nc = c + sdc[i]
+    for i in range(0, 8, 2):
+        nr = r + rdr[i]
+        nc = c + rdc[i]
         
         # 게임판 밖이거나 해당위치에 다른 산타가 있다면 해당방향은 패스한다.
         if nr < 1 or nr > N or nc < 1 or nc > N or (graph[nr][nc] != -1 and graph[nr][nc] != 0):
@@ -140,25 +140,25 @@ def santa_move(rudolf, santa):
             dir = i if i < dir else dir
 
     # 해당 위치에 루돌프가 있다면 점수를 얻고 넉백한다.
-    if graph[r + sdr[dir]][c + sdc[dir]] == -1:
+    if graph[r + rdr[dir]][c + rdc[dir]] == -1:
         santa_info[santa][2] += D
         santa_info[santa][1] = turn + 1
         if dir == 0:
-            dir = 2
-        elif dir == 1:
-            dir = 3
+            dir = 4
         elif dir == 2:
+            dir = 6
+        elif dir == 4:
             dir = 0
         else:
-            dir = 1
+            dir = 2
         # 산타의 자리는 계산을 위해 갱신하지 않는다.
         graph[r][c] = 0
         santa_knockback(santa, dir, 1)
     else:
-        santa_position[santa][0] = r + sdr[dir]
-        santa_position[santa][1] = c + sdc[dir]
+        santa_position[santa][0] = r + rdr[dir]
+        santa_position[santa][1] = c + rdc[dir]
         graph[r][c] = 0
-        graph[r + sdr[dir]][c + sdc[dir]] = santa
+        graph[r + rdr[dir]][c + rdc[dir]] = santa
 
 def santa_score_up():
     global santa_info
