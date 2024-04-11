@@ -7,11 +7,11 @@ for i in range(1, N+1):
     graph[i][1:] = list(map(int, input().split()))
 
 # 참가자들 정보
-r = [ 0 for _ in range(N+1) ]
-c = [ 0 for _ in range(N+1) ]
-is_escape = [ False for _ in range(N+1) ]
+r = [ 0 for _ in range(M+1) ]
+c = [ 0 for _ in range(M+1) ]
+is_escape = [ False for _ in range(M+1) ]
 # 참가자가 이동한 거리
-dist = [ 0 for _ in range(N+1) ]
+dist = [ 0 for _ in range(M+1) ]
 # 출구 좌표
 out_r = 0
 out_c = 0
