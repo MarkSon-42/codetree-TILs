@@ -38,8 +38,8 @@ next_board = [
 
 def check_escape():
     global is_escape
-    for i in is_escape:
-        if not i:
+    for i in range(1, len(is_escape)):
+        if not is_escape[i]:
             return False
     return True
 
@@ -167,8 +167,6 @@ for turn in range(K):
     turn += 1
     # 모든 참가자들을 한 번에 이동시킨다. 이 때, 출구와 가까워질 수 없다면 이동시키지 않음
     move_users()
-    if check_escape():
-        break
     # 가장 작은 사각형을 구한다.
     check_square()
     # 벽들을 회전시키고 내구도를 소모한다.
