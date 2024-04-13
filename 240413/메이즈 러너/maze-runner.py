@@ -88,8 +88,8 @@ def check_square():
     global user_position, out_position, board, sr, sc, ssize
     out_r, out_c = out_position
     for size in range(2, N+1):
-        for r in range(1, N - size + 2):
-            for c in range(1, N - size + 2):
+        for r in range(1, N - size + 1):
+            for c in range(1, N - size + 1):
                 # 출구가 존재하지 않으면 패스
                 if not (r <= out_r and out_r < r + size and c <= out_c and out_c < c + size):
                     continue
@@ -134,7 +134,7 @@ def rotate_square():
     
     # 회전하고나서 board를 갱신해준다.
     for r in range(sr, sr + ssize + 1):
-        for c in range(sr, sr + ssize + 1):
+        for c in range(sc, sc + ssize + 1):
             board[r][c] = next_board[r][c]
     
     
