@@ -118,11 +118,9 @@ def rotate_square():
                 next_board[nr][nc] -= 1
             # 유저 위치와 탈출구도 회전
             for user in range(1, M+1):
-                # 이미 탈출하거나 본 회전에서 회전된 유저는 건들지 않는다.
                 if is_escape[user] or is_moved[user]:
                     continue
                 user_r, user_c = user_position[user]
-                # 만약 돌리는 위치에 유저가 포함되어 있다면 돌려준다.
                 if user_r == sr+r and user_c == sc+c:
                     user_position[user] = (nr, nc)
                     is_moved[user] = True
@@ -133,8 +131,8 @@ def rotate_square():
                 out_moved = True
     
     # 회전하고나서 board를 갱신해준다.
-    for r in range(sr, sr + ssize + 1):
-        for c in range(sc, sc + ssize + 1):
+    for r in range(sr, sr + ssize):
+        for c in range(sc, sc + ssize):
             board[r][c] = next_board[r][c]
     
     
