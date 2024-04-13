@@ -88,8 +88,8 @@ def check_square():
     global user_position, out_position, board, sr, sc, ssize
     out_r, out_c = out_position
     for size in range(2, N+1):
-        for r in range(1, N - size + 1):
-            for c in range(1, N - size + 1):
+        for r in range(1, N - size + 2):
+            for c in range(1, N - size + 2):
                 # 출구가 존재하지 않으면 패스
                 if not (r <= out_r and out_r < r + size and c <= out_c and out_c < c + size):
                     continue
@@ -118,9 +118,11 @@ def rotate_square():
                 next_board[nr][nc] -= 1
             # 유저 위치와 탈출구도 회전
             for user in range(1, M+1):
+                # 이미 탈출하거나 본 회전에서 회전된 유저는 건들지 않는다.
                 if is_escape[user] or is_moved[user]:
                     continue
                 user_r, user_c = user_position[user]
+                # 만약 돌리는 위치에 유저가 포함되어 있다면 돌려준다.
                 if user_r == sr+r and user_c == sc+c:
                     user_position[user] = (nr, nc)
                     is_moved[user] = True
