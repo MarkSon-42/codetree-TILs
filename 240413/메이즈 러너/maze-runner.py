@@ -27,7 +27,7 @@ out_position = tuple(map(int, input().split()))
 
 def check_escape():
     global is_escape
-    for i in range(1, len(is_escape)):
+    for i in range(1, M+1):
         # 살아있는 사람이 한명이라도 있다면 False
         if not is_escape[i]:
             return False
@@ -88,8 +88,8 @@ def check_square():
     global user_position, out_position, board, sr, sc, ssize
     out_r, out_c = out_position
     for size in range(2, N+1):
-        for r in range(1, N - size + 1):
-            for c in range(1, N - size + 1):
+        for r in range(1, N - size + 2):
+            for c in range(1, N - size + 2):
                 # 출구가 존재하지 않으면 패스
                 if not (r <= out_r and out_r < r + size and c <= out_c and out_c < c + size):
                     continue
