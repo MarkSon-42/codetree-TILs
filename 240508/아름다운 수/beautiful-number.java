@@ -1,3 +1,5 @@
+package codetree.intermidiate_low.backtracking.beautiful_number;
+
 import java.util.*;
 import java.io.*;
 
@@ -18,10 +20,10 @@ public class Main {
     }
 
     public static boolean check() {
-        for(int i = 0; i < N; i += list.get(i)){
+        for(int i = 0; i < N; i++){
             int num = list.get(i);
-            if(i + list.get(i) - 1 >= n)
-                
+            if(num == 1)
+                continue;
             int cnt = 1;
             while(i <= N-2) {
                 if(list.get(i+1) != num)
