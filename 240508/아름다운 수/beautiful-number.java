@@ -29,8 +29,8 @@ public class Main {
                 cnt++;
                 i++;
             }
-//            if(list.get(i) != 1 && list.get(i) == num)
-//                cnt++;
+           if(list.get(i) != 1 && list.get(i) == num)
+               cnt++;
             if(cnt % num != 0)
                 return false;
         }
