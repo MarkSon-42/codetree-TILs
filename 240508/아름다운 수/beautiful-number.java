@@ -23,6 +23,8 @@ public class Main {
             if(num == 1)
                 continue;
             int cnt = 1;
+            System.out.println("현재 수 : " + num);
+            System.out.println("현재 i값 : " + i);
             while(i < N-2) {
                 if(list.get(i+1) != num)
                     break;
