@@ -14,8 +14,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         input();
-        recursion(0);
-        System.out.print(answer);
+
+        if(str.length() == 1){
+            System.out.print(4);
+        } else {
+            recursion(0);
+            System.out.print(answer);
+        }
     }
 
     // 알파벳을 숫자로 치환
