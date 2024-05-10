@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static List<Character> opers = new ArrayList<>();
     public static List<Character> nums = new ArrayList<>();
     public static String str;
     public static int answer = Integer.MIN_VALUE;
@@ -15,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         input();
 
+        // 한자릿수인 경우는 
         if(str.length() == 1){
             System.out.print(4);
         } else {
@@ -27,21 +27,31 @@ public class Main {
     public static String convert() {
         String temp = str;
         // System.out.println("변환 전 수식 = " + str);
-        for(int i = 0; i < temp.length(); i++){
-            String s = temp.substring(i, i+1);
-            if(s.equals("a")){
-                temp = temp.replace("a", selectedNums.get(0).toString());
-            } else if(s.equals("b")){
-                temp = temp.replace("b", selectedNums.get(1).toString());
-            } else if(s.equals("c")){
-                temp = temp.replace("c", selectedNums.get(2).toString());
-            } else if(s.equals("d")){
-                temp = temp.replace("d", selectedNums.get(3).toString());
-            } else if(s.equals("e")){
-                temp = temp.replace("e", selectedNums.get(4).toString());
-            } else if(s.equals("f")){
-                temp = temp.replace("f", selectedNums.get(5).toString());
+        for(int i = 0; i < selectedNums.size(); i++){
+            for(int j = 0; j < temp.length(); j++){
+                String s = temp.substring(j, j+1);
+
+                if(s.equals("a")){
+                    temp = temp.replace("a", selectedNums.get(i).toString());
+                    break;
+                } else if(s.equals("b")){
+                    temp = temp.replace("b", selectedNums.get(i).toString());
+                    break;
+                } else if(s.equals("c")){
+                    temp = temp.replace("c", selectedNums.get(i).toString());
+                    break;
+                } else if(s.equals("d")){
+                    temp = temp.replace("d", selectedNums.get(i).toString());
+                    break;
+                } else if(s.equals("e")){
+                    temp = temp.replace("e", selectedNums.get(i).toString());
+                    break;
+                } else if(s.equals("f")){
+                    temp = temp.replace("f", selectedNums.get(i).toString());
+                    break;
+                }
             }
+            // System.out.println("한 사이클 치환 이후 temp값 = " + temp);
         }
         return temp;
     }
@@ -79,7 +89,7 @@ public class Main {
         char[] chars = str.toCharArray();
         for(int i = 0; i < chars.length; i++){
             if(chars[i] == '+' || chars[i] == '-' || chars[i] == '*')
-                opers.add(chars[i]);
+                continue;
             else {
                 if(!nums.contains(chars[i]))
                     N++;
