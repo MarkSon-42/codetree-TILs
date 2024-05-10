@@ -23,38 +23,17 @@ public class Main {
         }
     }
 
-    public static boolean check() {
-        int temp1 = list.get(0);
-        int temp2 = list.get(1);
-        int temp3 = list.get(2);
-
-        for(int i = 2; i < list.size(); i++){
-            if(temp1 == temp2 && temp1 == temp3)
-                return false;
-            temp1 = temp2;
-            temp2 = temp3;
-            temp3 = list.get(i);
-        }
-        return true;
-    }
-
     public static void recursion(int num){
         if(num == N){
-            if(N < 3){
-                print();
-                System.out.println();
-                return;
-            } else {
-                if(check()){
-                    print();
-                    System.out.println();
-                    return;
-                }
-            }
+            print();
+            System.out.println();
+            return;
         }
 
         for(int i = 1; i <= K; i++){
-            if(list.size() >= 3 && check()){
+            if(num >= 2 && 
+                i == list.get(list.size()-1) &&
+                i == list.get(list.size()-2)) {
                 continue;
             }
             list.add(i);
