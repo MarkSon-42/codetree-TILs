@@ -7,7 +7,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         input();
-        recursion(1, 0);
+        
+        for(int i = 1; i <= N; i++){
+            list.add(i);
+            recursion(i, 1);
+            list.remove(list.size()-1);
+        }
     }
 
     public static void input() throws IOException {
@@ -25,19 +30,17 @@ public class Main {
         System.out.println();
     }
 
-    public static void recursion(int currNum, int cnt) {
-        if(currNum == N+1){
-            if(cnt == M){
-                print();
-            }
+    public static void recursion(int lastNum, int cnt) {
+        if(cnt == M){
+            print();
             return;
         }
 
-        list.add(currNum);
-        recursion(currNum+1, cnt+1);
-        list.remove(list.size()-1);
-
-        recursion(currNum+1, cnt);
+        for(int i = lastNum+1; i <= N; i++){
+            list.add(i);
+            recursion(i, cnt+1);
+            list.remove(list.size()-1);
+        }
     }
 
 }
