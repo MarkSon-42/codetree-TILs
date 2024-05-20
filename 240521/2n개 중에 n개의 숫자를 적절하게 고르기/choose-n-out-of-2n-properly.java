@@ -27,10 +27,12 @@ public class Main {
     }
 
     public static int calc() {
+        // 집합 A의 합
         int sum1 = list.stream()
                         .mapToInt(Integer::intValue)
                         .sum();
 
+        // 집합 A 이외의 수 집합 B의 합
         int sum2 = 0;
         for(int i = 0; i < arr.length; i++){
             if(!idxList.contains(i))
@@ -41,7 +43,7 @@ public class Main {
     }
 
     public static void find(int currIdx, int cnt){
-        if(currIdx == n+1){
+        if(currIdx == 2*n){
             if(cnt == n){
                 answer = Math.min(answer, calc());
             }
@@ -49,12 +51,16 @@ public class Main {
         }
 
         int num = arr[currIdx];
+
+        // 고른 수와 해당 인덱스를 더해줌
         list.add(num);
         idxList.add(currIdx);
+
         // 현재 수를 고른 경우
         find(currIdx+1, cnt+1);
         list.remove(list.size()-1);
         idxList.remove(idxList.size()-1);
+
         // 현재 수를 고르지 않은 경우
         find(currIdx+1, cnt);
     }
