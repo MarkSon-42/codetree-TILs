@@ -13,7 +13,7 @@ class Pair {
 public class Main {
     public static int n, m;
     public static int answer = Integer.MAX_VALUE;
-    public static int maxDist = Integer.MAX_VALUE;
+    public static int maxDist;
     public static List<Pair> pairList = new ArrayList<>();
     public static List<Pair> selectList = new ArrayList<>();
     // 고른 애들 중에서 가장 먼 점 찾을때 쓰는 리스트
@@ -28,6 +28,7 @@ public class Main {
     public static void find(int currIdx, int cnt){
         if(currIdx == n){
             if(cnt == m){
+                maxDist = Integer.MIN_VALUE;
                 findPairs(0, 0);
                 answer = Math.min(answer, maxDist);
             }
@@ -55,7 +56,7 @@ public class Main {
             if(cnt == 2){
                 Pair a = tempList.get(0);
                 Pair b = tempList.get(1);
-                maxDist = Math.min(maxDist, getDist(a.x, a.y, b.x, b.y));
+                maxDist = Math.max(maxDist, getDist(a.x, a.y, b.x, b.y));
             }
             return;
         }
