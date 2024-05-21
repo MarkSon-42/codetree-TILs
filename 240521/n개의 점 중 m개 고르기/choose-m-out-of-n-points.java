@@ -12,18 +12,18 @@ class Pair {
 
 public class Main {
     public static int n, m;
-    public static double answer = Double.MAX_VALUE;
+    public static int answer = Integer.MAX_VALUE;
     public static List<Pair> pairList = new ArrayList<>();
     public static List<Pair> selectList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException{
         input();
         find(0, 0);
-        System.out.print((int) (answer * answer));
+        System.out.print((int) (answer));
     }
 
-    public static double calc(){
-        double dist = Double.MAX_VALUE;
+    public static int calc(){
+        int dist = Integer.MAX_VALUE;
 
         for(int i = 0; i < selectList.size()-1; i++){
             Pair tempA = selectList.get(i);
@@ -34,7 +34,7 @@ public class Main {
                 int bx = tempB.x;
                 int by = tempB.y;
 
-                double tempDist = Math.sqrt((int) Math.pow(ax-bx, 2) + (int) Math.pow(ay-by, 2));
+                int tempDist = (int) Math.pow(ax-bx, 2) + (int) Math.pow(ay-by, 2);
 
                 // System.out.println("현재 A = " + ax + ", " + ay);
                 // System.out.println("현재 B = " + bx + ", " + by);
