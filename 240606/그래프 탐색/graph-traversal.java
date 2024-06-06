@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static int n, m;
@@ -9,6 +10,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         input();
+        System.out.print(graph.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ", "[", "]")));
         dfs(1);
         System.out.print(answer);
     }
@@ -46,8 +50,6 @@ public class Main {
 
             graph.get(a).add(b);
             graph.get(b).add(b);
-            Collections.sort(graph.get(a));
-            Collections.sort(graph.get(b));
         }
     }
 }
