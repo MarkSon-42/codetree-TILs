@@ -46,6 +46,8 @@ public class Main {
 
             graph.get(a).add(b);
             graph.get(b).add(b);
+            Collections.sort(graph.get(a));
+            Collections.sort(graph.get(b));
         }
     }
 }
