@@ -10,9 +10,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         input();
-        System.out.print(graph.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]")));
         dfs(1);
         System.out.print(answer);
     }
@@ -49,7 +46,7 @@ public class Main {
             int b = Integer.parseInt(st.nextToken());
 
             graph.get(a).add(b);
-            graph.get(b).add(b);
+            graph.get(b).add(a);
         }
     }
 }
