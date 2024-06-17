@@ -21,8 +21,11 @@ public class Main {
 
     public static void dfs(int r, int c) {
         visited[r][c] = 1;
-        if(r == n && c == m)
+        if(answer == 1 || (r == n && c == m)) {
             answer = 1;
+            return;
+        }
+            
         
         for(int i = 0; i < 4; i++){
             int nr = r + dr[i];
