@@ -21,7 +21,7 @@ public class Main {
 
     public static void dfs(int r, int c) {
         visited[r][c] = 1;
-        if(answer == 1 || (r == n-1 && c == m-1)) {
+        if((r == n-1 && c == m-1)) {
             answer = 1;
             return;
         }
