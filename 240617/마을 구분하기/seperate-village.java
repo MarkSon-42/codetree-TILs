@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 public class Main {
     public static List<Integer> list = new ArrayList<>();
     public static int n;
+    public static int cnt;
     public static int[][] grid;
     public static int[][] visited;
     public static int[] dr = {-1, 1, 0, 0};
@@ -15,8 +16,9 @@ public class Main {
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 if(grid[i][j] == 1 && visited[i][j] == 0){
-                    int temp = dfs(i, j, 1);
-                    list.add(temp);
+                    cnt = 1;
+                    dfs(i, j);
+                    list.add(cnt);
                 }
             }
         }
@@ -44,9 +46,8 @@ public class Main {
         return true;
     }
 
-    public static int dfs(int r, int c, int nums) {
+    public static void dfs(int r, int c) {
         visited[r][c] = 1;
-        int people = nums;
         for(int i = 0; i < 4; i++){
             int nr = r + dr[i];
             int nc = c + dc[i];
@@ -54,9 +55,9 @@ public class Main {
             if(!inRange(nr, nc) || !canGo(nr, nc)){
                 continue;
             }
-            people = dfs(nr, nc, nums+1);
+            cnt++;
+            dfs(nr, nc);
         }
-        return people;
     }
 
     public static void input() throws IOException {
