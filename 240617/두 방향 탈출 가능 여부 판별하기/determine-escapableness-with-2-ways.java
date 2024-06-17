@@ -6,8 +6,8 @@ public class Main {
     public static int[][] grid;
     public static int[][] visited;
     public static int answer = 0;
-    public static int[] dr = {-1, 1, 0, 0};
-    public static int[] dc = {0, 0, -1, 1};
+    public static int[] dr = {1, 0};
+    public static int[] dc = {0, 1};
 
     public static void main(String[] args) throws IOException {
         input();
@@ -21,13 +21,13 @@ public class Main {
 
     public static void dfs(int r, int c) {
         visited[r][c] = 1;
-        if((r == n-1 && c == m-1)) {
+        if(answer == 1 || (r == n-1 && c == m-1)) {
             answer = 1;
             return;
         }
 
 
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 2; i++){
             int nr = r + dr[i];
             int nc = c + dc[i];
 
