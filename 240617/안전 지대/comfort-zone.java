@@ -11,7 +11,7 @@ public class Main {
     public static int[] dr = {-1, 1, 0, 0};
     public static int[] dc = {0, 0, -1, 1};
 
-    public static int maxK = 0;
+    public static int maxK = 1;
     public static int maxAreas = 0;
 
     public static void main(String[] args) throws IOException {
