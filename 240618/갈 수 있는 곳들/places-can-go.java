@@ -16,7 +16,9 @@ public class Main {
         for(int i = 0; i < k; i++){
             int r = coordinates[i][0];
             int c = coordinates[i][1];
-
+            
+            // visited 초기화
+            visited = new boolean[n][n];
             bfs(r, c);
         }
 
@@ -35,7 +37,6 @@ public class Main {
         Deque<int[]> q = new ArrayDeque<>();
         q.add(new int[]{r, c});
         visited[r][c] = true;
-        visitedGrid[r][c] = 2;
 
         while(!q.isEmpty()) {
             int[] temp = q.poll();
