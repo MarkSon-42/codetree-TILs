@@ -37,6 +37,7 @@ public class Main {
         Deque<int[]> q = new ArrayDeque<>();
         q.add(new int[]{r, c});
         visited[r][c] = true;
+        visitedGrid[r][c] = 2;
 
         while(!q.isEmpty()) {
             int[] temp = q.poll();
