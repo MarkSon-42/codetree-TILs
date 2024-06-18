@@ -86,11 +86,13 @@ public class Main {
             visitedGrid[i] = temp;
         }
 
-        coordinates = new int[n][2];
+        coordinates = new int[k][2];
         for(int i = 0; i < k; i++) {
             st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
+
+            // 인덱스 맞추기 위해 -1 처리
             coordinates[i] = new int[]{r-1, c-1};
         }
     }
