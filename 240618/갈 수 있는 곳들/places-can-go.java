@@ -18,7 +18,7 @@ public class Main {
             int c = coordinates[i][1];
             
             // visited 초기화
-            visited = new boolean[n][n];
+            // visited = new boolean[n][n];
             bfs(r, c);
         }
 
