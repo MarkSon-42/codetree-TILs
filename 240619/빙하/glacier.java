@@ -39,6 +39,7 @@ public class Main {
         visited[0][0] = true;
         Deque<int[]> q = new ArrayDeque<>();
         q.add(new int[]{0, 0});
+
         List<int[]> waterPos = new ArrayList<>();
         waterPos.add(new int[]{0, 0});
 
@@ -57,7 +58,6 @@ public class Main {
                 }
             }
         }
-        
         return waterPos;
     }
 
@@ -89,7 +89,7 @@ public class Main {
     }
 
     public static boolean inRange(int r, int c) {
-        return r >= 0 && r < n && c >= 0 && c < n;
+        return r >= 0 && r < n && c >= 0 && c < m;
     }
 
     public static boolean canGo(int r, int c) {
