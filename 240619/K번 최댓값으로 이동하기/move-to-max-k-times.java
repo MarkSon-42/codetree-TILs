@@ -1,111 +1,160 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+
+class Pair { 
+    int x, y;
+    public Pair(int x, int y) { 
+        this.x = x; 
+        this.y = y; 
+    } 
+}
 
 public class Main {
+    public static final Pair NOT_EXISTS = new Pair(-1, -1);
+    public static final int DIR_NUM = 4;
+    public static final int MAX_N = 100;
+    
     public static int n, k;
-    public static int sr, sc;
-    public static int[][] grid;
-    public static boolean[][] visited;
-    public static List<int[]> list = new ArrayList<>();
-
-    public static int[] dr = {-1, 1, 0, 0};
-    public static int[] dc = {0, 0, -1, 1};
-
-    public static void main(String[] args) throws IOException{
-        input();
-        for(int i = 0; i < k; i++){
-            visited = new boolean[n][n];
-            list = new ArrayList<>();
-            if(!bfs(sr, sc, grid[sr][sc]))
-                break;
-
-            // bfs가 1회 끝나고 나면, 정렬을 통해 시작위치를 재설정한다.
-            // 값 내림차순, 행 오름차순, 열 오름차순 으로 진행
-            Collections.sort(list, new Comparator<int[]>(){
-                @Override
-                public int compare(int[] a, int[] b) {
-                    if(a[0] != b[0]) {
-                        return Integer.compare(b[0], a[0]);
-                    } else if(a[1] != b[1]) {
-                        return Integer.compare(a[1], b[1]);
-                    } else {
-                        return Integer.compare(a[2], b[2]);
-                    }
-                }
-            });
-            // for(int[] arr : list) {
-            //     System.out.println(Arrays.toString(arr));
-            // }
-            sr = list.get(0)[1];
-            sc = list.get(0)[2];
-            // System.out.println("재설정된 시작 좌표 : " + sr + " " + sc);
-        }
-        System.out.print(sr+1);
-        System.out.print(" ");
-        System.out.print(sc+1);
+    
+    public static int[][] grid = new int[MAX_N][MAX_N];
+    
+    // 현재 위치
+    public static Pair currCell;
+    
+    public static Queue<Pair> bfsQ = new LinkedList<>();
+    public static boolean[][] visited = new boolean[MAX_N][MAX_N];
+    
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
     }
-
-    public static boolean bfs(int r, int c, int cur) {
-        Deque<int[]> q = new ArrayDeque<>();
-        q.add(new int[]{r, c});
-        visited[r][c] = true;
-
-        // 이동할 수 있는지 없는지 판단하는 플래그 값
-        boolean flag = false;
-
-        while(!q.isEmpty()) {
-            int[] temp = q.poll();
-            int cr = temp[0];
-            int cc = temp[1];
-
-            for(int i = 0; i < 4; i++){
-                int nr = cr + dr[i];
-                int nc = cc + dc[i];
-                if(canGo(nr, nc, cur)){
-                    flag = true;
-                    visited[nr][nc] = true;
-
-                    // bfs로 갈 수 있는 곳들을 모두 모으기 위한 리스트에 더해줌
-                    // [값, 행, 렬] 로 들어감 
-                    // System.out.println("bfs에서 들어갈 값과 좌표" + grid[nr][nc] + ", " + nr +", " + nc );
-                    list.add(new int[]{grid[nr][nc], nr, nc});
-                    q.add(new int[]{nr, nc});
+    
+    public static boolean canGo(int x, int y, int targetNum) {
+        return inRange(x, y) && !visited[x][y] && 
+               grid[x][y] < targetNum;
+    }
+    
+    // visited 배열을 초기화 해줍니다.
+    public static void initializeVisited() {
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                visited[i][j] = false;
+    }
+    
+    public static void BFS() {
+        int[] dx = new int[]{0, 1, 0, -1};
+        int[] dy = new int[]{1, 0, -1, 0};
+    
+        
+        int cX = currCell.x;
+        int cY = currCell.y;
+        visited[cX][cY] = true;
+        bfsQ.add(currCell);
+        
+        int targetNum = grid[cX][cY];
+        
+        // BFS 탐색을 수행합니다.
+        while(!bfsQ.isEmpty()) {
+            Pair currPos = bfsQ.poll();
+            int currX = currPos.x;
+            int currY = currPos.y;
+    
+            for(int i = 0; i < DIR_NUM; i++) {
+                int newX = currX + dx[i];
+                int newY = currY + dy[i];
+    
+                if(canGo(newX, newY, targetNum)) {
+                    bfsQ.add(new Pair(newX, newY));
+                    visited[newX][newY] = true;
                 }
             }
         }
-        return flag;
     }
-
-    public static boolean inRange(int r, int c) {
-        return r >= 0 && r < n && c >= 0 && c < n;
+    
+    // best 위치를 새로운 위치로 바꿔줘야 하는지를 판단합니다.
+    public static boolean needUpdate(Pair bestPos, Pair newPos) {
+        // 첫 도달 가능한 위치라면
+        // update가 필요합니다.
+        if(bestPos.x == NOT_EXISTS.x && bestPos.y == NOT_EXISTS.y)
+            return true;
+        
+        int bestX = bestPos.x;
+        int bestY = bestPos.y;
+        
+        int newX = newPos.x;
+        int newY = newPos.y;
+        
+        // 숫자, -행, -열 순으로 더 큰 곳이 골라져야 합니다.
+        if(grid[newX][newY] != grid[bestX][bestY])
+            return grid[newX][newY] > grid[bestX][bestY];
+        if(-newX != -bestX)
+            return -newX > -bestX;
+        return -newY > -bestY;
     }
-
-    public static boolean canGo(int r, int c, int cur) {
-        if(!inRange(r, c) || grid[r][c] >= cur || visited[r][c])
+    
+    // 가장 우선순위가 높은 위치를 찾아
+    // 위치를 이동합니다.
+    public static boolean move() {
+        // BFS 탐색을 위한 초기화 작업을 수행합니다.
+        initializeVisited();
+        
+        // Step1. BFS를 진행하여 갈 수 있는 모든 위치를 탐색합니다.
+        BFS();
+        
+        // Step2. 
+        // 도달 할 수 있는 위치들 중
+        // 가장 우선순위가 높은 위치를 구합니다.
+        Pair bestPos = NOT_EXISTS;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) {
+                // 도달이 불가능하거나 현재 위치는 건너뜁니다.
+                if(!visited[i][j] || 
+                    i == currCell.x && j == currCell.y)
+                    continue;
+                
+                Pair newPos = new Pair(i, j);
+                if(needUpdate(bestPos, newPos))
+                    bestPos = newPos;
+            }
+        
+        // Step3. 위치를 이동합니다.
+        
+        // 만약 움직일 위치가 없다면 종료합니다.
+        if(bestPos.x == NOT_EXISTS.x && bestPos.y == NOT_EXISTS.y)
             return false;
-        return true;
+        // 움직일 위치가 있다면 이동합니다.
+        else {
+            currCell = bestPos;
+            return true;
+        }
     }
 
-    public static void input() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        n = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(st.nextToken());
-
-        grid = new int[n][n];
-        visited = new boolean[n][n];
-
-        for(int i = 0; i < n; i++){
-            int[] temp = Arrays.stream(br.readLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-
-            grid[i] = temp;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        k = sc.nextInt();
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) 
+                grid[i][j] = sc.nextInt();
+        
+        // 초기 위치를 설정합니다.
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+        currCell = new Pair(r - 1, c - 1);
+        
+        // k번에 걸쳐 움직이는 것을 반복합니다.
+        while(k-- > 0) {
+            boolean isMoved = move();
+            
+            // 움직이지 못했다면 바로 종료합니다.
+            if(!isMoved)
+                break;
         }
+        
+        int finalX = currCell.x;
+        int finalY = currCell.y;
 
-        st = new StringTokenizer(br.readLine());
-        sr = Integer.parseInt(st.nextToken()) - 1;
-        sc = Integer.parseInt(st.nextToken()) - 1;
+        System.out.print((finalX + 1) + " " + (finalY + 1));
     }
 }
