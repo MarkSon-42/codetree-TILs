@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static List<int[]> getWaterPos() {
-        visited = new int[n][m];
+        visited = new boolean[n][m];
         visited[0][0] = true;
         Deque<int[]> q = new ArrayDeque<>();
         q.add(new int[]{0, 0});
