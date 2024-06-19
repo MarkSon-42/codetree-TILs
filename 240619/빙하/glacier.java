@@ -94,7 +94,7 @@ public class Main {
     }
 
     public static boolean canGo(int r, int c) {
-        if(!inRange(r, c) || grid[r][c] == 1)
+        if(!inRange(r, c) || grid[r][c] == 1 || visited[r][c])
             return false;
         return true;
     }
