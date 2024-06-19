@@ -44,7 +44,7 @@ public class Main {
         // 선택된 돌들을 1로 치환 (원복)
         for (int i = 0; i < m; i++) {
             int r = selectedStones.get(i)[0];
-            int c = selectedStones.get(i)[0];
+            int c = selectedStones.get(i)[1];
 
             grid[r][c] = 1;
         }
