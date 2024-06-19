@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
         input();
         findMax(0, 0);
-        System.out.print(answer+1);
+        System.out.print(answer);
     }
 
     public static boolean inRange(int r, int c) {
@@ -77,7 +77,7 @@ public class Main {
 
     public static int calc() {
         visited = new boolean[n][n];
-        int cnt = 0;
+        int cnt = 1;
 
         for(int[] city : selectedCities) {
             bfs(city);
