@@ -60,24 +60,29 @@ public class Main {
         Deque<int[]> q = new ArrayDeque<>();
         int r = city[0];
         int c = city[1];
+        q.add(new int[]{r, c});
 
         visited[r][c] = true;
 
-        for(int i = 0; i < 4; i++){
-            int nr = r + dr[i];
-            int nc = c + dc[i];
-            if(canGo(r, c, nr, nc)){
-                visited[nr][nc] = true;
-                r = nr;
-                c = nc;
-                q.add(new int[]{nr, nc});
+        while(!q.isEmpty()) {
+            int[] temp = q.poll();
+            int cr = temp[0];
+            int cc = temp[1];
+            
+            for(int i = 0; i < 4; i++){
+                int nr = cr + dr[i];
+                int nc = cc + dc[i];
+                if(canGo(cr, cc, nr, nc)){
+                    visited[nr][nc] = true;
+                    q.add(new int[]{nr, nc});
+                }
             }
         }
     }
 
     public static int calc() {
         visited = new boolean[n][n];
-        int cnt = 1;
+        int cnt = 0;
 
         for(int[] city : selectedCities) {
             bfs(city);
