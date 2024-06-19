@@ -23,7 +23,7 @@ public class Main {
         }
         System.out.print(time + " " + meltedIceSize);
     }
-    
+
     public static boolean isIceExists() {
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
@@ -55,6 +55,7 @@ public class Main {
                 if(canGo(nr, nc)) {
                     visited[nr][nc] = true;
                     waterPos.add(new int[]{nr, nc});
+                    q.add(new int[]{nr, nc});
                 }
             }
         }
