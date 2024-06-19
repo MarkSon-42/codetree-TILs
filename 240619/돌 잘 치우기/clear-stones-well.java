@@ -61,20 +61,18 @@ public class Main {
         return cnt;
     }
 
-    // n개의 돌 중 m개 고르기
     public static void findMax(int idx, int cnt) {
-        if (idx == stonePos.size()) {
-            if (cnt == m) {
+        if(idx == stonePos.size()) {
+            if(cnt == m){
                 answer = Math.max(answer, calc());
             }
             return;
         }
 
         selectedStones.add(stonePos.get(idx));
-        findMax(idx + 1, cnt + 1);
-        selectedStones.remove(selectedStones.size() - 1);
-
-        findMax(idx + 1, cnt);
+        findMax(idx+1, cnt+1);
+        selectedStones.remove(selectedStones.size()-1);
+        findMax(idx+1, cnt);
     }
 
     public static void bfs(int r, int c) {
