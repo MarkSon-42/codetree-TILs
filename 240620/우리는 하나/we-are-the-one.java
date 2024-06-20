@@ -103,7 +103,7 @@ public class Main {
         if(cnt > k)
             return;
 
-        if(idx == n*n) {
+        if(idx == cities.size()) {
             if(cnt == k) {
                 answer = Math.max(answer, calc());
             }
