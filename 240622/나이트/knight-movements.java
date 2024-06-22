@@ -15,7 +15,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         input();
         bfs(r1, c1, 0);
-        System.out.print(distances[r2][c2] != 0 ? distances[r2][c2] : -1);
+        if(r1 == r2 && c1 == c2){
+            System.out.print(0);
+        } else {
+            System.out.print(distances[r2][c2] != 0 ? distances[r2][c2] : -1);
+        }
     }
 
     public static boolean inRange(int r, int c) {
