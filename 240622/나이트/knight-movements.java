@@ -7,7 +7,7 @@ public class Main {
     public static boolean[][] visited;
 
     public static int r1, c1, r2, c2;
-    public static int answer = -1;
+    public static int answer = 0;
 
     public static int[] dr = {-1, -2, -2, -1, 1, 2, 2, 1};
     public static int[] dc = {-2, -1, 1, 2, 2, 1, -1, -2};
