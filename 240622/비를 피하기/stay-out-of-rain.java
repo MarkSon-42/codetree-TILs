@@ -9,45 +9,41 @@ public class Main {
     public static List<int[]> exitPos = new ArrayList<>();
     public static boolean[][] visited;
 
+    public static Deque<int[]> q = new ArrayDeque<>();
+
     public static int[] dr = {-1, 1, 0, 0};
     public static int[] dc = {0, 0, -1, 1};
 
     public static void main(String[] args) throws IOException {
         input();
 
-        for(int[] people : peoplePos){
-            int r = people[0];
-            int c = people[1];
-            bfs(r, c, 0);
-            int dist = findMin();
-            answer[r][c] = dist == Integer.MAX_VALUE ? -1 : dist;
+        for(int[] exit : exitPos){
+            int r = exit[0];
+            int c = exit[1];
 
-            distances = new int[n][n];
-            visited = new boolean[n][n];
+            q.add(exit);
+
+            visited[r][c] = true;
+            distances[r][c] = 0;
         }
-
+        bfs();
         print();
     }
 
     public static void print() {
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
-                System.out.print(answer[i][j] + " ");
+                if(grid[i][j] != 2){
+                    System.out.print(0 + " ");
+                } else {
+                    if(!visited[i][j])
+                        System.out.print(-1 + " ");
+                    else
+                        System.out.print(distances[i][j] + " ");
+                }
             }
             System.out.println();
         }
-    }
-
-    public static int findMin() {
-        int dist = Integer.MAX_VALUE;
-        for(int[] exit : exitPos){
-            int r = exit[0];
-            int c = exit[1];
-            if(distances[r][c] != 0){
-                dist = Math.min(distances[r][c], dist);
-            }
-        }
-        return dist;
     }
 
     public static boolean inRange(int r, int c) {
@@ -60,22 +56,11 @@ public class Main {
         return true;
     }
 
-    public static void bfs(int sr, int sc, int dist) {
-        Deque<int[]> q = new ArrayDeque<>();
-        visited[sr][sc] = true;
-        distances[sr][sc] = dist;
-        q.add(new int[]{sr, sc});
-
+    public static void bfs() {
         while(!q.isEmpty()) {
             int[] temp = q.poll();
             int r = temp[0];
             int c = temp[1];
-
-            // System.out.println("===");
-            // for(int[] arr : distances) {
-            //     System.out.println(Arrays.toString(arr));
-            // }
-            // System.out.println("===");
 
             for(int i = 0; i < 4; i++){
                 int nr = r + dr[i];
