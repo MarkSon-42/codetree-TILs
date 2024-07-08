@@ -24,4 +24,3 @@ for i in range(n):
 
 # 마지막 경우의 수를 출력한다.
 print(cnt)
-출처: https://code-angie.tistory.com/127 [CodeAngie:티스토리]
