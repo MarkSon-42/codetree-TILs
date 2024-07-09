@@ -16,6 +16,25 @@ public class Main {
 
         while(l <= r) {
             int mid = (l + r) / 2;
+            if(arr[mid] == target){
+                minIdx = mid;
+                break;
+            }
+            if(arr[mid] > target)
+                r = mid - 1;
+            else
+                l = mid + 1;
+        }
+
+        if(minIdx == n){
+            System.out.println(-1);
+            return;
+        }
+
+        minIdx = n;
+
+        while(l <= r) {
+            int mid = (l + r) / 2;
             if(arr[mid] >= target){
                 r = mid -1;
                 minIdx = Math.min(minIdx, mid);
@@ -23,7 +42,7 @@ public class Main {
             else
                 l = mid + 1;
         }
-        System.out.println(minIdx == n ? -1 : minIdx+1);
+        System.out.println(minIdx+1);
     }
 
     public static void input() throws IOException {
