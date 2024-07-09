@@ -10,32 +10,38 @@ public class Main {
         input();
     }
 
-    public static int findMin(int start, int end) {
+    public static int findMin(int start) {
         int l = 0;
         int r = n-1;
+        int minIdx = n;
 
         while(l <= r) {
             int mid = (l + r) / 2;
-            if(dotArr[mid] >= start)
+            if(dotArr[mid] >= start){
                 r = mid - 1;
+                minIdx = Math.min(minIdx, mid);
+            }
             else
                 l = mid + 1;
         }
-        return r + 1;
+        return minIdx;
     }
 
-    public static int findMax(int start, int end) {
+    public static int findMax(int end) {
         int l = 0;
         int r = n-1;
+        int minIdx = n;
 
         while(l <= r) {
             int mid = (l + r) / 2;
-            if(dotArr[mid] > end)
+            if(dotArr[mid] > end){
                 r = mid - 1;
+                minIdx = Math.min(minIdx, mid);
+            }
             else
                 l = mid + 1;
         }
-        return r;
+        return minIdx;
     }
 
     public static void input() throws IOException {
@@ -63,10 +69,10 @@ public class Main {
 
             int cnt = 0;
 
-            int min = findMin(start, end);
-            int max = findMax(start, end);
+            int min = findMin(start);
+            int max = findMax(end);
 
-            System.out.println(max - min + 1);
+            System.out.println(max - min);
         }
     }
 }
