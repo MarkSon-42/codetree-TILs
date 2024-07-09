@@ -9,29 +9,10 @@ public class Main {
         input();
     }
 
-    public static void find(int target) {
+    public static int find(int target) {
         int l = 0;
         int r = n-1;
         int minIdx = n;
-
-        while(l <= r) {
-            int mid = (l + r) / 2;
-            if(arr[mid] == target){
-                minIdx = mid;
-                break;
-            }
-            if(arr[mid] > target)
-                r = mid - 1;
-            else
-                l = mid + 1;
-        }
-
-        if(minIdx == n){
-            System.out.println(-1);
-            return;
-        }
-
-        minIdx = n;
 
         while(l <= r) {
             int mid = (l + r) / 2;
@@ -42,7 +23,7 @@ public class Main {
             else
                 l = mid + 1;
         }
-        System.out.println(minIdx+1);
+        return minIdx;
     }
 
     public static void input() throws IOException {
@@ -61,7 +42,11 @@ public class Main {
                             .toArray();
 
         for(int t : temp) {
-            find(t);
+            int idx = find(t);
+            if(idx <= n && arr[idx] == t)
+                System.out.println(idx+1);
+            else
+                System.out.println(-1);
         }
     }
 }
