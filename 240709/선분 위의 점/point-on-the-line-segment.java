@@ -12,7 +12,7 @@ public class Main {
 
     public static int find(int start, int end, int target) {
         int l = start;
-        int r = end-1;
+        int r = end;
 
         while(l <= r) {
             int mid = (l + r) / 2;
