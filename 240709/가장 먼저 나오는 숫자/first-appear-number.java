@@ -43,7 +43,7 @@ public class Main {
 
         for(int t : temp) {
             int idx = find(t);
-            if(idx <= n && arr[idx] == t)
+            if(idx < n && arr[idx] == t)
                 System.out.println(idx+1);
             else
                 System.out.println(-1);
