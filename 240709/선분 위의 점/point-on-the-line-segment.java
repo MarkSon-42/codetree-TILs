@@ -10,21 +10,32 @@ public class Main {
         input();
     }
 
-    public static int find(int start, int end, int target) {
-        int l = start;
-        int r = end;
+    public static int findMin(int start, int end) {
+        int l = 0;
+        int r = n-1;
 
         while(l <= r) {
             int mid = (l + r) / 2;
-            if(mid == target){
-                return 1;
-            }
-            if(target < mid)
+            if(dotArr[mid] >= start)
                 r = mid - 1;
             else
                 l = mid + 1;
         }
-        return 0;
+        return r + 1;
+    }
+
+    public static int findMax(int start, int end) {
+        int l = 0;
+        int r = n-1;
+
+        while(l <= r) {
+            int mid = (l + r) / 2;
+            if(dotArr[mid] > end)
+                r = mid - 1;
+            else
+                l = mid + 1;
+        }
+        return r;
     }
 
     public static void input() throws IOException {
@@ -50,10 +61,10 @@ public class Main {
 
             int cnt = 0;
 
-            for(int target : dotArr){
-                cnt += find(start, end, target);
-            }
-            System.out.println(cnt);
+            int min = findMin(start, end);
+            int max = findMax(start, end);
+
+            System.out.println(max - min + 1);
         }
     }
 }
