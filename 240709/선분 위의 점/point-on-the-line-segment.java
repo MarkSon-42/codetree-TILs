@@ -16,10 +16,10 @@ public class Main {
 
         while(l <= r) {
             int mid = (l + r) / 2;
-            if(dotArr[mid] < start)
-                l = mid + 1;
-            else
+            if(dotArr[mid] >= start)
                 r = mid - 1;
+            else
+                l = mid + 1;
         }
         return r + 1;
     }
@@ -30,7 +30,7 @@ public class Main {
 
         while(l <= r) {
             int mid = (l + r) / 2;
-            if(end < dotArr[mid])
+            if(dotArr[mid] > end)
                 r = mid - 1;
             else
                 l = mid + 1;
@@ -48,6 +48,8 @@ public class Main {
         dotArr = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
+        
+        Arrays.sort(dotArr);
 
         lineArr = new int[m][2];
 
